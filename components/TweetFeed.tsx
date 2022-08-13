@@ -37,45 +37,47 @@ const TweetFeed = ({ profile }: InitialProps) => {
       </div>
       <div className="">
         {tweets &&
-          tweets.map((tweet, index) => (
-            <div key={index} className="p-5">
-              <div className="flex items-center space-x-5">
-                <Image
-                  src={tweet.attributes.pft}
-                  width={50}
-                  height={50}
-                  alt=""
-                  className="rounded-full"
-                />
-                <div className="flex justify-between w-full">
-                  <div className="text-gray-300 flex space-x-2 items-center">
-                    <p>{tweet.attributes.username}</p>
-                    <p className="text-gray-500">{user?.attributes.bio}</p>
+          tweets
+            .map((tweet, index) => (
+              <div key={index} className="p-5">
+                <div className="flex items-center space-x-5">
+                  <Image
+                    src={tweet.attributes.pft}
+                    width={50}
+                    height={50}
+                    alt=""
+                    className="rounded-full"
+                  />
+                  <div className="flex justify-between w-full">
+                    <div className="text-gray-300 flex space-x-2 items-center">
+                      <p>{tweet.attributes.username}</p>
+                      <p className="text-gray-500">{user?.attributes.bio}</p>
+                    </div>
+                    <p className="text-lg">
+                      {tweet.attributes.sentiment === "Positive"
+                        ? "😊"
+                        : tweet.attributes.sentiment === "Negative"
+                        ? "😟"
+                        : ""}
+                    </p>
                   </div>
-                  <p className="text-lg">
-                    {tweet.attributes.sentiment === "Positive"
-                      ? "😊"
-                      : tweet.attributes.sentiment === "Negative"
-                      ? "😟"
-                      : ""}
+                </div>
+                <div className="mt-2">
+                  <p className="text-gray-200 pl-10 mb-3">
+                    {tweet.attributes.tweetTxt}
                   </p>
+                  {tweet.attributes.tweetImg && (
+                    <Image
+                      src={tweet.attributes.tweetImg}
+                      width={1000}
+                      height={800}
+                      alt=""
+                    />
+                  )}
                 </div>
               </div>
-              <div className="mt-2">
-                <p className="text-gray-200 pl-10 mb-3">
-                  {tweet.attributes.tweetTxt}
-                </p>
-                {tweet.attributes.tweetImg && (
-                  <Image
-                    src={tweet.attributes.tweetImg}
-                    width={1000}
-                    height={800}
-                    alt=""
-                  />
-                )}
-              </div>
-            </div>
-          )).reverse()}
+            ))
+            .reverse()}
       </div>
     </div>
   );

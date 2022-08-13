@@ -36,7 +36,6 @@ const SettingsForm = () => {
       const query = new Moralis.Query(User);
       const myDetails = await query.first();
       try {
-
         if (name) {
           myDetails?.set("username", name);
         }
@@ -55,8 +54,10 @@ const SettingsForm = () => {
           await file.saveIPFS();
           myDetails?.set("banner", file.ipfs());
         }
-      } catch (error) { console.error("user already exists") }
-        await myDetails?.save();
+      } catch (error) {
+        console.error("user already exists");
+      }
+      await myDetails?.save();
       reload();
     } else return;
   };
