@@ -3,7 +3,6 @@ import { Dispatch, SetStateAction } from "react";
 import { BsTwitter } from "react-icons/bs";
 import { FaFeatherAlt } from "react-icons/fa";
 import { useMoralis } from "react-moralis";
-import { resolve_url } from "../utils/resolve_url";
 import { Sidebar_data } from "../utils/sidebar";
 
 type Props = {
@@ -17,9 +16,7 @@ const Sidebar = ({ setComponent }: Props) => {
   if (username?.length > 10) {
     username = `${username?.slice(0, 3)}...${username?.slice(-4)}`;
   }
-  let image: string = user?.get("pft");
-  image = resolve_url(image);
-  // console.log(image)
+  const image: string = user?.get("pft");
   return (
     <div className="flex flex-col justify-between">
       <div>

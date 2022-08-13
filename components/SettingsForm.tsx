@@ -35,26 +35,28 @@ const SettingsForm = () => {
       const User = Moralis.Object.extend("_User");
       const query = new Moralis.Query(User);
       const myDetails = await query.first();
+      try {
 
-      if (name) {
-        myDetails?.set("username", name);
-      }
-      if (bio) {
-        myDetails?.set("bio", bio);
-      }
-      if (pftFile) {
-        const data = pftFile;
-        const file = new Moralis.File(data.name, data);
-        await file.saveIPFS();
-        myDetails?.set("pft", file.ipfs());
-      }
-      if (bannerFile) {
-        const data = bannerFile;
-        const file = new Moralis.File(data.name, data);
-        await file.saveIPFS();
-        myDetails?.set("banner", file.ipfs());
-      }
-      await myDetails?.save();
+        if (name) {
+          myDetails?.set("username", name);
+        }
+        if (bio) {
+          myDetails?.set("bio", bio);
+        }
+        if (pftFile) {
+          const data = pftFile;
+          const file = new Moralis.File(data.name, data);
+          await file.saveIPFS();
+          myDetails?.set("pft", file.ipfs());
+        }
+        if (bannerFile) {
+          const data = bannerFile;
+          const file = new Moralis.File(data.name, data);
+          await file.saveIPFS();
+          myDetails?.set("banner", file.ipfs());
+        }
+      } catch (error) { console.error("user already exists") }
+        await myDetails?.save();
       reload();
     } else return;
   };

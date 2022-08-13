@@ -2,14 +2,14 @@ import Image from "next/image";
 import Banner from "./Heading";
 import { useMoralis } from "react-moralis";
 import { AiTwotoneEdit } from "react-icons/ai";
-import { resolve_url } from "../utils/resolve_url"
+import TweetFeed from "./TweetFeed";
 
 const Profile = () => {
   const { user } = useMoralis();
   const username = user?.getUsername();
   const bio = user?.get("bio");
-  const pft = resolve_url(user?.get("pft"));
-  const banner = resolve_url(user?.get("banner"));
+  const pft: string = user?.get("pft");
+  const banner: string = user?.get("banner");
   return (
     <div className="w-full p-2">
       <Banner title={"Profile"} />
@@ -48,6 +48,7 @@ const Profile = () => {
           />
         </div>
       </div>
+      <TweetFeed profile={user?.attributes.solAddress} />
     </div>
   );
 };
