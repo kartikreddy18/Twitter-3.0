@@ -1,3 +1,7 @@
+## Twitter Dapp w/ Live Sentiment Analysis
+
+https://user-images.githubusercontent.com/90296788/184521660-ef884b72-09dd-49da-b136-7c06524efdff.mp4
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
